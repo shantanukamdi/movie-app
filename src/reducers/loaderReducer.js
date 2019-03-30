@@ -5,7 +5,6 @@ const show_loader = false;
 export default (state = show_loader, action) => {
     switch(action.type) {
         case TYPES.SHOW_LOADER: {
-            console.log('TYPES.SHOW_LOADER');
             return {
                 ...state,
                 show_loader: true

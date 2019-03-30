@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import './App.css';
+import { Provider } from 'react-redux';
 import store from './store/store';
-import { init } from './actions/index';
+import Main from './containers/Main';
+import GlobalStyle from './styles/global';
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
+import './App.css';
 
-store.dispatch(init());
 
 class App extends Component {
   
   render() {
     return (
-     <div></div>
+     <Provider store={store}>
+        <Main />
+        <GlobalStyle />
+     </Provider>
     );
   }
 }
