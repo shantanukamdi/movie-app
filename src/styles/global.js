@@ -20,7 +20,8 @@ export default createGlobalStyle`
     body {
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
-        line-height: 1.6;
+        background-color: rgb(240, 240, 240);
+        letter-spacing: 0.1em;
       }
       form,
       input,
