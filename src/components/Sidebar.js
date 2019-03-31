@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import logo from '../assets/watch.svg';
 import theme from '../styles/theme';
 import { changeMenuItem } from '../actions/index';
@@ -52,20 +54,23 @@ const MainMenuItem = styled.li`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    padding: 20px;
     &:hover {
         cursor: pointer;
-        background-color: black;
     }
 
-    padding-left: 20px;
-    padding-top: 20px;
+    padding: 10px;
 `;
 
-const MainMenuItemA = styled.a`
+const MainMenuItemLink = styled(Link)`
     text-decoration: none;
     color: ${theme.colors.fontColor};
-    
+    display: block;
+    padding: 10px;
+    &:hover {
+        background-color: black;
+        border-radius: 10px;
+    }
+
     & i {
         color: palevioletred;
         width: 1em;
@@ -101,10 +106,10 @@ class Sidebar extends Component {
                             {state.sideBarMenuItems.map((element, index) => {
                                 return (
                                     <MainMenuItem key={index}>
-                                        <MainMenuItemA href="#" alt="Popular">
+                                        <MainMenuItemLink to={"/discover/" + element.title} key={index}>
                                             <i className={element.icon} aria-hidden="true"></i>&nbsp;
-                                        {element.title}
-                                        </MainMenuItemA>
+                                            {element.title}
+                                        </MainMenuItemLink>
                                     </MainMenuItem>
 
                                 );
@@ -119,10 +124,10 @@ class Sidebar extends Component {
                                         key={index}
                                         onClick={() => this.props.onMenuChange(element.name)}
                                         >
-                                        <MainMenuItemA href="javascript:void(0)" alt={element.name}>
-                                        <i className="fa fa-circle" aria-hidden="true"></i>&nbsp;
-                                        {element.name}
-                                        </MainMenuItemA>
+                                        <MainMenuItemLink alt={element.name}>
+                                            <i className="fa fa-circle" aria-hidden="true"></i>&nbsp;
+                                            {element.name}
+                                        </MainMenuItemLink>
                                     </MainMenuItem>
 
                                 );
