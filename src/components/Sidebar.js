@@ -105,7 +105,10 @@ class Sidebar extends Component {
                         <MainMenu>
                             {state.sideBarMenuItems.map((element, index) => {
                                 return (
-                                    <MainMenuItem key={index}>
+                                    <MainMenuItem 
+                                        key={index}
+                                        onClick={() => this.props.onMenuChange(element.title)}
+                                    >
                                         <MainMenuItemLink to={"/discover/" + element.title} key={index}>
                                             <i className={element.icon} aria-hidden="true"></i>&nbsp;
                                             {element.title}

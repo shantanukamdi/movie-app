@@ -3,33 +3,27 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 const MainContainerWrapper = styled.div`
-    margin-left: 5%;
-    margin-top: 5%;
+    border: 1px solid black;
+    padding: 20px;
+    width: 80%;
 `; 
 
 const SelectedMenuItem = styled.h2`
-    color: palevioledred;
+    color: palevioletred;
+    display: block;
 `;
 
 class MainContainer extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            header: ''
-        }
-    }
-
-    componentDidUpdate(nextProps) {
-        let header = nextProps.match.params.name;
-        console.log('Main Container', header);
     }
 
     render() {
         return (
             <MainContainerWrapper>
                 <SelectedMenuItem>
-                    {this.state.header}
+                    {this.props.menuItem.selectedMenuItem}
                 </SelectedMenuItem>
                 Movies
             </MainContainerWrapper>
