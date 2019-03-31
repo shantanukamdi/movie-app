@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
-
+import { connect } from 'react-redux';
 import logo from '../assets/watch.svg';
 import theme from '../styles/theme';
+import { changeMenuItem } from '../actions/index';
 
 const SidebarWrapper = styled.div`
     display: flex;
     width: 20%;
-    height: 100vh;
     background-color: ${theme.colors.sideBarColor};
 `;
 const Logo = styled.div`
@@ -98,11 +98,11 @@ class Sidebar extends Component {
 
                     <Navigation>
                         <MainMenu>
-                            {state.sideBarMenuItems.map((element) => {
+                            {state.sideBarMenuItems.map((element, index) => {
                                 return (
-                                    <MainMenuItem>
+                                    <MainMenuItem key={index}>
                                         <MainMenuItemA href="#" alt="Popular">
-                                            <i class={element.icon} aria-hidden="true"></i>&nbsp;
+                                            <i className={element.icon} aria-hidden="true"></i>&nbsp;
                                         {element.title}
                                         </MainMenuItemA>
                                     </MainMenuItem>
@@ -112,12 +112,16 @@ class Sidebar extends Component {
                         </MainMenu>
 
                         <SecondaryMenu>
-                            {state.sideBarMenuItems.map((element) => {
+                            {this.props.genre.genres &&
+                                this.props.genre.genres.map((element, index) => {
                                 return (
-                                    <MainMenuItem>
-                                        <MainMenuItemA href="#" alt="Popular">
-                                            <i class={element.icon} aria-hidden="true"></i>&nbsp;
-                                        {element.title}
+                                    <MainMenuItem 
+                                        key={index}
+                                        onClick={() => this.props.onMenuChange(element.name)}
+                                        >
+                                        <MainMenuItemA href="javascript:void(0)" alt={element.name}>
+                                        <i className="fa fa-circle" aria-hidden="true"></i>&nbsp;
+                                        {element.name}
                                         </MainMenuItemA>
                                     </MainMenuItem>
 
@@ -133,4 +137,17 @@ class Sidebar extends Component {
     }
 }
 
-export default Sidebar;
+const mapStateToProps = state => {
+    const { genre } = state;
+    return {
+        genre
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onMenuChange: (menuItem) => dispatch(changeMenuItem(menuItem))    
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

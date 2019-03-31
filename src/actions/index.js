@@ -10,17 +10,25 @@ import api from '../api/api';
  *  @returns {void}
  */
 export const init = () => {
-    return async (dispatch) => {
+    return async (dispatch, oldState) => {
         dispatch({ type: TYPES.SHOW_LOADER });
-        // await dispatch(getPopularMovies());
-        const popularMovies = await getPopularMovies();
-        dispatch({ type: TYPES.FETCH_POPULAR_MOVIES, payload: popularMovies });
-        // await dispatch(getGenres());
+        const popularMovies = await api.get('/movie/popular');
+        dispatch({ type: TYPES.FETCH_POPULAR_MOVIES, payload: popularMovies.data });
+        const genres = await api.get('/genre/movie/list');
+        dispatch({ type: TYPES.FETCH_GENRES, payload: genres.data.genres });
         dispatch({ type: TYPES.HIDE_LOADER });
     }
 }
-
-const getPopularMovies = async () => {
-    const popularMovies = await api.get('/movie/popular');
-    console.log(popularMovies);
+export const changeMenuItem = (menuItem) => {
+    return {
+        type: TYPES.SET_SELECTED_MENU_OPTIONS,
+        payload: menuItem
+    };
 }
+// const getPopularMovies = async () => {
+//     return await api.get('/movie/popular');
+// }
+
+// const getGenres = async () => {
+//     return await api.get('/genre/movie/list');
+// }
