@@ -1,7 +1,7 @@
 import * as TYPES from '../actions/types';
 
 const popularMovies = {
-    popularMovies: {},
+    movies: null,
     isPopularMoviesLoading: true
 };
 
@@ -24,7 +24,7 @@ export default (state = popularMovies, action) => {
         case TYPES.FETCH_POPULAR_MOVIES: {
             return {
                 ...state,
-                popularMovies: action.payload,
+                movies: action.payload,
                 isPopularMoviesLoading: false
             };
         }

@@ -9,7 +9,7 @@ import { changeMenuItem, getPopularMovies } from '../actions/index';
 
 const SidebarWrapper = styled.div`
     display: flex;
-    width: 20%;
+    width: 30%;
     background-color: ${theme.colors.sideBarColor};
 `;
 const Logo = styled.div`
