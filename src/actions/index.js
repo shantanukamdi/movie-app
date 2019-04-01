@@ -25,9 +25,15 @@ export const changeMenuItem = (menuItem) => {
         payload: menuItem
     };
 }
-// const getPopularMovies = async () => {
-//     return await api.get('/movie/popular');
-// }
+export const getPopularMovies = (parameter) => {
+    return async (dispatch) => {
+        dispatch({ type: TYPES.FETCH_POPULAR_MOVIES_LOADING });
+        const popularMovies = await api.get('/movie/'+ parameter);
+        dispatch({ type: TYPES.FETCH_POPULAR_MOVIES, payload: popularMovies.data });
+        dispatch({ type: TYPES.HIDE_LOADER });
+        dispatch({ type: TYPES.FETCH_POPULAR_MOVIES_FINISHED });
+    };
+}
 
 // const getGenres = async () => {
 //     return await api.get('/genre/movie/list');

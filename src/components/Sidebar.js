@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import logo from '../assets/watch.svg';
 import theme from '../styles/theme';
-import { changeMenuItem } from '../actions/index';
+import { changeMenuItem, getPopularMovies } from '../actions/index';
 
 const SidebarWrapper = styled.div`
     display: flex;
@@ -85,13 +85,16 @@ class Sidebar extends Component {
         let state = {
             sideBarMenuItems: [{
                 title: 'Popular',
-                icon: 'fa fa-heart'
+                icon: 'fa fa-heart',
+                urlParam: 'popular'
             }, {
                 title: 'Top Rated',
-                icon: 'fa fa-bar-chart'
+                icon: 'fa fa-bar-chart',
+                urlParam: 'top_rated'
             }, {
                 title: 'Upcoming',
-                icon: 'fa fa-ticket'
+                icon: 'fa fa-ticket',
+                urlParam: 'upcoming'
             }]
         };
         return (
@@ -107,7 +110,10 @@ class Sidebar extends Component {
                                 return (
                                     <MainMenuItem 
                                         key={index}
-                                        onClick={() => this.props.onMenuChange(element.title)}
+                                        onClick={() => {
+                                            this.props.onMenuChange(element.title);
+                                            this.props.onDiscoverChange(element.urlParam);
+                                        }}
                                     >
                                         <MainMenuItemLink to={"/discover/" + element.title} key={index}>
                                             <i className={element.icon} aria-hidden="true"></i>&nbsp;
@@ -154,7 +160,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onMenuChange: (menuItem) => dispatch(changeMenuItem(menuItem))    
+        onMenuChange: (menuItem) => dispatch(changeMenuItem(menuItem)),
+        onDiscoverChange: (category) => dispatch(getPopularMovies(category))
     }
 };
 
