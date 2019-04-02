@@ -5,12 +5,31 @@ import { getPopularMovies } from '../actions';
 import { Flex, Box } from '@rebass/grid'
 
 const MainContainerWrapper = styled.div`
-    padding: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
 `; 
 
 const SelectedMenuItem = styled.h2`
     color: palevioletred;
     display: block;
+`;
+
+const Grid = styled.div`
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+`;
+
+const Image = styled.div`
+    display: flex;
+
+    & img {
+        margin: 20px;
+        width: 300px;
+        height: 450px;
+        box-shadow: 0px 2px 4px rgba(0,0,0,0.6);
+        border-radius: 10px;
+    }
 `;
 
 class MainContainer extends Component {
@@ -29,20 +48,20 @@ class MainContainer extends Component {
                 </SelectedMenuItem>
                 Movies
 
-                <Flex flexWrap='wrap'>
+                <Grid>
                     { 
                         this.props.popularMovie.movies === null 
                             ? console.log('Still initializing') 
                             : this.props.popularMovie.movies.results.map((element, index) => {
                                 return (
-                                    <Box key={index} width={300} px={2}>
-                                        <img src={"https://image.tmdb.org/t/p/w342/"+element.poster_path} width="200px" height="200px"/>
-                                    </Box>
+                                    <Image key={index}>
+                                        <img src={"https://image.tmdb.org/t/p/w342/"+element.poster_path} />
+                                    </Image>
                                 );
                             })
 
                     }
-                </Flex>
+                </Grid>
             </MainContainerWrapper>
         );
     }

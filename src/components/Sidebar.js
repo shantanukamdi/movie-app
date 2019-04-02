@@ -8,8 +8,8 @@ import theme from '../styles/theme';
 import { changeMenuItem, getPopularMovies } from '../actions/index';
 
 const SidebarWrapper = styled.div`
-    display: flex;
-    width: 30%;
+    width: 18%;
+    position: fixed;
     background-color: ${theme.colors.sideBarColor};
 `;
 const Logo = styled.div`
