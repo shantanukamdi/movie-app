@@ -7,9 +7,10 @@ import logo from '../assets/watch.svg';
 import theme from '../styles/theme';
 import { changeMenuItem, getPopularMovies } from '../actions/index';
 
+import StickyBox from 'react-sticky-box';
+
 const SidebarWrapper = styled.div`
     width: 18%;
-    position: fixed;
     background-color: ${theme.colors.sideBarColor};
 `;
 const Logo = styled.div`
@@ -99,54 +100,56 @@ class Sidebar extends Component {
         };
         return (
             <SidebarWrapper>
-                <SectionSidebar>
-                    <Logo>
-                        <img src={logo} title="Movie Icon" width="100px" height="100px" />
-                    </Logo>
+                <StickyBox>
+                    <SectionSidebar>
+                        <Logo>
+                            <img src={logo} title="Movie Icon" width="100px" height="100px" />
+                        </Logo>
 
-                    <Navigation>
-                        <MainMenu>
-                            {state.sideBarMenuItems.map((element, index) => {
-                                return (
-                                    <MainMenuItem 
-                                        key={index}
-                                        onClick={() => {
-                                            this.props.onMenuChange(element.title);
-                                            this.props.onDiscoverChange(element.urlParam);
-                                        }}
-                                    >
-                                        <MainMenuItemLink to={"/discover/" + element.title} key={index}>
-                                            <i className={element.icon} aria-hidden="true"></i>&nbsp;
-                                            {element.title}
-                                        </MainMenuItemLink>
-                                    </MainMenuItem>
-
-                                );
-                            })}
-                        </MainMenu>
-
-                        <SecondaryMenu>
-                            {this.props.genre.genres &&
-                                this.props.genre.genres.map((element, index) => {
-                                return (
-                                    <MainMenuItem 
-                                        key={index}
-                                        onClick={() => this.props.onMenuChange(element.name)}
+                        <Navigation>
+                            <MainMenu>
+                                {state.sideBarMenuItems.map((element, index) => {
+                                    return (
+                                        <MainMenuItem
+                                            key={index}
+                                            onClick={() => {
+                                                this.props.onMenuChange(element.title);
+                                                this.props.onDiscoverChange(element.urlParam);
+                                            }}
                                         >
-                                        <MainMenuItemLink alt={element.name}>
-                                            <i className="fa fa-circle" aria-hidden="true"></i>&nbsp;
-                                            {element.name}
-                                        </MainMenuItemLink>
-                                    </MainMenuItem>
+                                            <MainMenuItemLink to={"/discover/" + element.title} key={index}>
+                                                <i className={element.icon} aria-hidden="true"></i>&nbsp;
+                                            {element.title}
+                                            </MainMenuItemLink>
+                                        </MainMenuItem>
 
-                                );
-                            })}
-                        </SecondaryMenu>
-                        
-                     
-                    </Navigation>
-                </SectionSidebar>
-            </SidebarWrapper>
+                                    );
+                                })}
+                            </MainMenu>
+
+                            <SecondaryMenu>
+                                {this.props.genre.genres &&
+                                    this.props.genre.genres.map((element, index) => {
+                                        return (
+                                            <MainMenuItem
+                                                key={index}
+                                                onClick={() => this.props.onMenuChange(element.name)}
+                                            >
+                                                <MainMenuItemLink alt={element.name}>
+                                                    <i className="fa fa-circle" aria-hidden="true"></i>&nbsp;
+                                            {element.name}
+                                                </MainMenuItemLink>
+                                            </MainMenuItem>
+
+                                        );
+                                    })}
+                            </SecondaryMenu>
+
+
+                        </Navigation>
+                    </SectionSidebar>
+                </StickyBox>
+                </SidebarWrapper>
         );
     }
 }

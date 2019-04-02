@@ -10,7 +10,6 @@ import { history } from '../helpers/history';
 
 const Container = styled.div`
     display: flex;
-    position: relative;
 `;
 
 class Main extends Component{
