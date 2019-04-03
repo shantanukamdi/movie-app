@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { getPopularMovies } from '../actions';
-import { Flex, Box } from '@rebass/grid'
+import { withRouter } from 'react-router-dom';
 
 const MainContainerWrapper = styled.div`
     padding-top: 10px;
@@ -32,7 +32,7 @@ const Image = styled.div`
     }
 `;
 
-class MainContainer extends Component {
+class PopularMovies extends Component {
 
     constructor(props) {
         super(props);
@@ -82,4 +82,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PopularMovies));

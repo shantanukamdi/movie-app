@@ -35,6 +35,13 @@ export const getPopularMovies = (parameter) => {
     };
 }
 
-// const getGenres = async () => {
-//     return await api.get('/genre/movie/list');
+// export const getGenres = (parameter) => {
+//     return async (dispatch) => {
+//         dispatch({ type: TYPES.SHOW_LOADER });
+//         dispatch({ type: TYPES.FETCH_GENRES_LOADING });
+//         const genresMovies = await api.get('/discover/movie'+ parameter);
+//         dispatch({ type: TYPES.FETCH_GENRES, payload: popularMovies.genresMovies });
+//         dispatch({ type: TYPES.HIDE_LOADER });
+//         dispatch({ type: TYPES.FETCH_GENRES_FINISHED });
+//     };
 // }

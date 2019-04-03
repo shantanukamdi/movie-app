@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 
 import { init } from '../actions/index';
 import Sidebar from '../components/Sidebar';
-import MainContainer from '../components/MainContainer';
+import PopularMovies from '../components/PopularMovies';
 import { history } from '../helpers/history';
+import GenreMovies from '../components/GenreMovies';
 
 const Container = styled.div`
     display: flex;
@@ -34,7 +35,12 @@ class Main extends Component{
                             <Route 
                                 path="/discover/:name"
                                 exact
-                                component={props => <MainContainer {...props} />}
+                                component={PopularMovies} />}
+                            />
+                             <Route 
+                                path="/discover/:genre"
+                                exact
+                                component={GenreMovies} />}
                             />
                         </Switch>
                     </div>

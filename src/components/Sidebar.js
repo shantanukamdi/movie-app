@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { history } from '../helpers/history';
 
 import logo from '../assets/watch.svg';
 import theme from '../styles/theme';
@@ -138,11 +139,22 @@ class Sidebar extends Component {
                                         return (
                                             <MainMenuItem
                                                 key={index}
-                                                onClick={() => this.props.onMenuChange(element.name)}
+                                                onClick={() => {
+                                                    this.props.onMenuChange(element.name)
+                                                    // history.push('/discover/'+element.name);
+                                                }}
                                             >
-                                                <MainMenuItemLink alt={element.name}>
+                                                <MainMenuItemLink 
+                                                    to={
+                                                        {
+                                                            pathName: `/discover/movie/`,
+                                                            search: `?with_genres=${element.id}&sort_by=popularity.desc`
+                                                        }
+                                                    }
+                                                    replace
+                                                    alt={element.name}>
                                                     <i className="fa fa-circle" aria-hidden="true"></i>&nbsp;
-                                            {element.name}
+                                                {element.name}
                                                 </MainMenuItemLink>
                                             </MainMenuItem>
 
