@@ -41,7 +41,7 @@ const MainMenu = styled.ul`
 
 const SecondaryMenu = styled.ul`
     margin-top: 20px;
-    &:: before {
+    &::before {
         content: 'GENRES';
         color: rgba(245, 245, 245, 0.8);
         padding-left: 10px;
@@ -78,6 +78,11 @@ const MainMenuItemLink = styled(Link)`
         height: 1em;
         margin-right: 10px;
     
+    }
+
+    &:focus {
+        background-color: black;
+        border-radius: 10px;
     }
 `;
 
