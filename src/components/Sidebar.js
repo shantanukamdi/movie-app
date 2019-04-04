@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled, { css } from 'styled-components';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { history } from '../helpers/history';
 
 import logo from '../assets/watch.svg';
@@ -145,12 +145,7 @@ class Sidebar extends Component {
                                                 }}
                                             >
                                                 <MainMenuItemLink 
-                                                    to={
-                                                        {
-                                                            pathName: `/discover/movie/`,
-                                                            search: `?with_genres=${element.id}&sort_by=popularity.desc`
-                                                        }
-                                                    }
+                                                    to={"/genres"}
                                                     replace
                                                     alt={element.name}>
                                                     <i className="fa fa-circle" aria-hidden="true"></i>&nbsp;
@@ -185,4 +180,4 @@ const mapDispatchToProps = dispatch => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Sidebar));

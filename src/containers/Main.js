@@ -18,8 +18,10 @@ class Main extends Component{
         this.props.dispatch(init());
         return (
             <Container>
+                {/* Removed BrowserRouter to solve the re-render issue.
+                    URL was getting updated, but not component.
+                */}
                 <Sidebar />
-                <BrowserRouter history={history} >
                     <div>
                         <Switch>
                             <Route 
@@ -35,17 +37,15 @@ class Main extends Component{
                             <Route 
                                 path="/discover/:name"
                                 exact
-                                component={PopularMovies} />}
+                                component={(props) => <PopularMovies {...props} />} />}
                             />
                              <Route 
-                                path="/discover/:genre"
+                                path="/genres"
                                 exact
-                                component={GenreMovies} />}
+                                component={(props) => <GenreMovies {...props} />} />}
                             />
                         </Switch>
                     </div>
-                </BrowserRouter>
-
             </Container>
         );
     }

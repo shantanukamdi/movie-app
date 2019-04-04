@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { withRouter } from 'react-router-dom';
 
 class GenreMovies extends Component {
 
@@ -29,4 +28,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(GenreMovies));
+export default connect(mapStateToProps, mapDispatchToProps)(GenreMovies);
