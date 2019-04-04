@@ -3,32 +3,35 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import { getPopularMovies } from '../actions';
 import { withRouter } from 'react-router-dom';
+import HeaderComponent from './Header';
 
 const MainContainerWrapper = styled.div`
     padding-top: 10px;
-    padding-left: 10px;
-`; 
-
-const SelectedMenuItem = styled.h2`
-    color: palevioletred;
-    display: block;
+    padding-left: 20px;
 `;
 
 const Grid = styled.div`
     display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 10px;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 5px;
 `;
 
 const Image = styled.div`
     display: flex;
+    flex-direction: column;
+
+    width: 230px;
+    padding: 10px;
+
+    align-items: center;
+    text-align: center;
 
     & img {
-        margin: 20px;
-        width: 300px;
-        height: 450px;
-        box-shadow: 0px 2px 4px rgba(0,0,0,0.6);
+        width: 100%;
+        height: 380px;
+        box-shadow: 0px 4px 28px 0px rgba(0, 0, 0, 0.4);
         border-radius: 10px;
+        margin-bottom: 10px;
     }
 `;
 
@@ -43,10 +46,7 @@ class PopularMovies extends Component {
     render() {
         return (
             <MainContainerWrapper>
-                <SelectedMenuItem>
-                    {this.props.menuItem.selectedMenuItem}
-                </SelectedMenuItem>
-                Movies
+                <HeaderComponent header={this.props.menuItem.selectedMenuItem} />
 
                 <Grid>
                     { 
@@ -56,6 +56,9 @@ class PopularMovies extends Component {
                                 return (
                                     <Image key={index}>
                                         <img src={"https://image.tmdb.org/t/p/w342/"+element.poster_path} />
+                                        <p>
+                                            { element.title }
+                                        </p>
                                     </Image>
                                 );
                             })

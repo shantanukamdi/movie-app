@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import HeaderComponent from './Header';
 
+const MainContainerWrapper = styled.div`
+    padding-top: 10px;
+    padding-left: 10px;
+`;
 class GenreMovies extends Component {
+
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return (
-            <div>
-                <h1>Genres</h1>
-            </div>
+            <MainContainerWrapper>
+                <HeaderComponent header={this.props.menuItem.selectedMenuItem} />
+            </MainContainerWrapper>
         )
     }
 }
 
 const mapStateToProps = state => {
     const { menuItem, popularMovie } = state;
+    console.log('State in Genre Movie COmponent', state);
     return {
         menuItem,
         popularMovie
