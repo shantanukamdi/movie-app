@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
-import { history } from '../helpers/history';
+import { withRouter, NavLink } from 'react-router-dom';
 
 import logo from '../assets/watch.svg';
 import theme from '../styles/theme';
@@ -63,28 +62,28 @@ const MainMenuItem = styled.li`
     padding: 10px;
 `;
 
-const MainMenuItemLink = styled(Link)`
-    text-decoration: none;
-    color: ${theme.colors.fontColor};
+const MainMenuItemLink = styled(NavLink)`,
+    font-weight: 600;
     display: block;
     padding: 10px;
     &:hover {
-        background-color: black;
+        background-color: #4db4ff;
         border-radius: 10px;
     }
 
     & i {
-        color: palevioletred;
+        color: ${theme.colors.sideBarFontColor};
         width: 1em;
         height: 1em;
         margin-right: 10px;
-    
+        
     }
-
-    &:focus {
-        background-color: black;
+    &.active {
+        background-color: #4db4ff;
         border-radius: 10px;
     }
+    text-decoration: none;
+    color: ${theme.colors.sideBarFontColor};
 `;
 
 class Sidebar extends Component {
@@ -123,7 +122,10 @@ class Sidebar extends Component {
                                                 this.props.onDiscoverChange(element.urlParam);
                                             }}
                                         >
-                                            <MainMenuItemLink to={"/discover/" + element.title} key={index}>
+                                            <MainMenuItemLink 
+                                                to={"/discover/" + element.title} 
+                                                key={index}
+                                                >
                                                 <i className={element.icon} aria-hidden="true"></i>&nbsp;
                                             {element.title}
                                             </MainMenuItemLink>
@@ -141,12 +143,11 @@ class Sidebar extends Component {
                                                 key={index}
                                                 onClick={() => {
                                                     this.props.onMenuChange(element.name)
-                                                    // history.push('/discover/'+element.name);
                                                 }}
                                             >
                                                 <MainMenuItemLink 
-                                                    to={"/genres"}
-                                                    replace
+                                                    key={index}
+                                                    to={"/genres/" + element.name}
                                                     alt={element.name}>
                                                     <i className="fa fa-circle" aria-hidden="true"></i>&nbsp;
                                                 {element.name}

@@ -1,7 +1,8 @@
 const theme = {
     colors: {
-        fontColor: `#00F5B8`,
-        sideBarColor: `#131418`,
+        fontColor: `#3C7FC6`,
+        sideBarFontColor: `#fff`,
+        sideBarColor: `#0496FF`,
     },
     size: {
 

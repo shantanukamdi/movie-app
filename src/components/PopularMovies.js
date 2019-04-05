@@ -56,7 +56,7 @@ class PopularMovies extends Component {
                                 return (
                                     <Image key={index}>
                                         <img src={"https://image.tmdb.org/t/p/w342/"+element.poster_path} />
-                                        <p>
+                                        <p style={{ fontSize: '12px', color: '#0496FF' }}>
                                             { element.title }
                                         </p>
                                     </Image>
