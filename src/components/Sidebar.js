@@ -108,7 +108,7 @@ class Sidebar extends Component {
                 <StickyBox>
                     <SectionSidebar>
                         <Logo>
-                            <img src={logo} title="Movie Icon" width="100px" height="100px" />
+                            <img src={logo} title="Movie Logo" alt="Movie Logo" width="100px" height="100px" />
                         </Logo>
 
                         <Navigation>

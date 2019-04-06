@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import styled, { css } from 'styled-components';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import styled from 'styled-components';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { init } from '../actions/index';
 import Sidebar from '../components/Sidebar';
 import PopularMovies from '../components/PopularMovies';
-import { history } from '../helpers/history';
 import GenreMovies from '../components/GenreMovies';
 
 const Container = styled.div`
