@@ -1,7 +1,7 @@
 import * as TYPES from '../actions/types';
 
 const genreMovies = {
-    movie: [],
+    movies: [],
     isGenreMovieLoading: false
 };
 
@@ -15,7 +15,7 @@ export default (state = genreMovies, action) => {
         case TYPES.FETCH_GENRES_MOVIES: {
             return {
                 ...state,
-                genres: action.payload
+                movies: action.payload
             }
         }
         case TYPES.FETCH_GENRES_MOVIES_FINISHED: {

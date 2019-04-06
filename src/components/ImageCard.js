@@ -22,7 +22,7 @@ const Image = styled.div`
 
 const ImageComponent = (props) => {
     return (
-        <Image>
+        <Image onClick={props.onClick}>
             {props.children}
         </Image>
     );

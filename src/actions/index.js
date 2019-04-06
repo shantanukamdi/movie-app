@@ -36,12 +36,30 @@ export const getPopularMovies = (parameter) => {
 }
 
 export const getGenresMovies = (genreId) => {
-    return async (dispatch) => {
+    return async (dispatch, oldState) => {
         dispatch({ type: TYPES.SHOW_LOADER });
         dispatch({ type: TYPES.FETCH_GENRES_MOVIES_LOADING });
         const genresMovies = await api.get(`/discover/movie?with_genres=${genreId}&sort_by=popularity.desc`);
-        dispatch({ type: TYPES.FETCH_GENRES_MOVIES, payload: genresMovies.genresMovies });
+        dispatch({ type: TYPES.FETCH_GENRES_MOVIES, payload: genresMovies.data });
         dispatch({ type: TYPES.HIDE_LOADER });
         dispatch({ type: TYPES.FETCH_GENRES_MOVIES_FINISHED });
     };
+}
+
+export const getMovieDetails = (movieId) => {
+    return async (dispatch, oldState) => {
+        dispatch({ type: TYPES.SHOW_LOADER });
+        const movie = await api.get(`/movie/${movieId}?append_to_response=videos`);
+        dispatch({ type: TYPES.FETCH_MOVIE_DETAILS, payload: movie.data });
+        dispatch({ type: TYPES.HIDE_LOADER });
+    }
+}
+
+export const getMovieCredits = (movieId) => {
+    return async (dispatch, oldState) => {
+        dispatch({ type: TYPES.SHOW_LOADER });
+        const movie = await api.get(`/movie/${movieId}/credits?append_to_response=videos`);
+        dispatch({ type: TYPES.FETCH_MOVIE_DETAILS_CREDITS, payload: movie.data });
+        dispatch({ type: TYPES.HIDE_LOADER });
+    }
 }

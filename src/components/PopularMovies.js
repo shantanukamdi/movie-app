@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+
 import styled from 'styled-components';
-import { getPopularMovies } from '../actions';
+import { getPopularMovies, getMovieDetails, getMovieCredits } from '../actions';
 import { withRouter } from 'react-router-dom';
 import HeaderComponent from './Header';
 import GridComponent from './Grid';
@@ -31,7 +33,14 @@ class PopularMovies extends Component {
                             ? console.log('Still initializing') 
                             : this.props.popularMovie.movies.results.map((element, index) => {
                                 return (
-                                    <ImageComponent key={index}>
+                                   <NavLink to={`/movie/${element.id}`}>
+                                        <ImageComponent 
+                                        key={index}
+                                        onClick={() => {
+                                            this.props.onHandleGetMovieDetails(element);
+                                            this.props.onHandleGetMovieCredits(element);
+                                        }}
+                                    >
                                         <img 
                                             src={"https://image.tmdb.org/t/p/w342/"+element.poster_path} 
                                             alt={element.title}
@@ -40,6 +49,7 @@ class PopularMovies extends Component {
                                             { element.title }
                                         </p>
                                     </ImageComponent>
+                                   </NavLink>
                                 );
                             })
 
@@ -60,7 +70,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onInitialRender: () => dispatch(getPopularMovies('popular'))
+        onInitialRender: () => dispatch(getPopularMovies('popular')),
+        onHandleGetMovieDetails: (movieId) => dispatch(getMovieDetails(movieId.id)),
+        onHandleGetMovieCredits: (movieId) => dispatch(getMovieCredits(movieId.id))
     };
 };
 
