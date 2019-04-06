@@ -35,11 +35,11 @@ export const getPopularMovies = (parameter) => {
     };
 }
 
-export const getGenresMovies = (parameter) => {
+export const getGenresMovies = (genreId) => {
     return async (dispatch) => {
         dispatch({ type: TYPES.SHOW_LOADER });
         dispatch({ type: TYPES.FETCH_GENRES_MOVIES_LOADING });
-        const genresMovies = await api.get('/discover/movie'+ parameter);
+        const genresMovies = await api.get(`/discover/movie?with_genres=${genreId}&sort_by=popularity.desc`);
         dispatch({ type: TYPES.FETCH_GENRES_MOVIES, payload: genresMovies.genresMovies });
         dispatch({ type: TYPES.HIDE_LOADER });
         dispatch({ type: TYPES.FETCH_GENRES_MOVIES_FINISHED });

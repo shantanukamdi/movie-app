@@ -39,7 +39,7 @@ class Main extends Component{
                                 component={(props) => <PopularMovies {...props} />} />}
                             />
                              <Route 
-                                path="/genres/:genre"
+                                path="/genres/:genre/"
                                 exact
                                 component={(props) => <GenreMovies {...props} />} />}
                             />

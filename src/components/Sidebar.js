@@ -5,7 +5,7 @@ import { withRouter, NavLink } from 'react-router-dom';
 
 import logo from '../assets/watch.svg';
 import theme from '../styles/theme';
-import { changeMenuItem, getPopularMovies } from '../actions/index';
+import { changeMenuItem, getPopularMovies, getGenresMovies } from '../actions/index';
 
 import StickyBox from 'react-sticky-box';
 
@@ -142,7 +142,8 @@ class Sidebar extends Component {
                                             <MainMenuItem
                                                 key={index}
                                                 onClick={() => {
-                                                    this.props.onMenuChange(element.name)
+                                                    this.props.onMenuChange(element.name);
+                                                    this.props.onGenreChange(element.id);
                                                 }}
                                             >
                                                 <MainMenuItemLink 
@@ -177,7 +178,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onMenuChange: (menuItem) => dispatch(changeMenuItem(menuItem)),
-        onDiscoverChange: (category) => dispatch(getPopularMovies(category))
+        onDiscoverChange: (category) => dispatch(getPopularMovies(category)),
+        onGenreChange: (genre) => dispatch(getGenresMovies(genre))
     }
 };
 
