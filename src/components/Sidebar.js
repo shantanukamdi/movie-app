@@ -10,7 +10,7 @@ import { changeMenuItem, getPopularMovies, getGenresMovies } from '../actions/in
 import StickyBox from 'react-sticky-box';
 
 const SidebarWrapper = styled.div`
-    width: 240px;
+    width: 190px;
     background-color: ${theme.colors.sideBarColor};
 `;
 const Logo = styled.div`

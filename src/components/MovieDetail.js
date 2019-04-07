@@ -1,31 +1,64 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-
+import Rating from 'react-rating';
+ 
 const MovieDetailsWrapper = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	width: 100%;
-	height: 100vh;
-	padding: 30px;
-	background-image: url('https://image.tmdb.org/t/p/original/vBSuGU5OyJ5lGamkqXo2kVAe01F.jpg');
+	display: grid;
+	grid-template-columns: auto 600px;
+	grid-gap: 20px;
 `;
 
 const MovieImage = styled.div`
 	& img {
-		max-width: 100%;
-        max-height: 100%;
-        border-radius: 10px;
+		border-radius: 10px;
     }
 `;
 
 const MovieInformation = styled.div`
-
-	& h3 {
+	text-align: left;	
+	& p {
+		color: #37474f;
 		font-weight: 400;
-		font-size: 32px;
+		font-size: 26px;
+		margin-bottom: 20px;
+		margin-top: 20px;
+	}
+	& Rating {
+		margin-top: 20px;
+	}
+`;
+
+const RatingWrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
+`;
+
+const Genre = styled.div`
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+
+	& p {
+		font-size: 12px;
 	}
 
+	& div {
+		display: flex;
+		& small {
+			margin-right: 5px;
+			width: 100%;
+		}
+	}
+`;
+
+const Synopsis = styled.div`
+	display: flex;
+	flex-direction: column;
+
+	& p {
+		font-size: 12px;
+	}
 `;
 
 class MovieDetails extends Component {
@@ -38,7 +71,7 @@ class MovieDetails extends Component {
 		return (
 			<div>
 				<MovieDetailsWrapper>
-					{/* <MovieImage>
+					<MovieImage>
 						{this.props.movieDetails
 							&& this.props.movieDetails.movieDetails
 							&& this.props.movieDetails.movieDetails.poster_path
@@ -49,14 +82,56 @@ class MovieDetails extends Component {
 								/>
 							</MovieImage>
 						}
-					</MovieImage> */}
+					</MovieImage>
 					<MovieInformation>
 						{
 							this.props.movieDetails
 							&& this.props.movieDetails.movieDetails
 							&& <div>
-								<h3>{this.props.movieDetails.movieDetails.original_title.toUpperCase()}</h3>
-								<small>{this.props.movieDetails.movieDetails.tagline}</small>
+								<p>{this.props.movieDetails.movieDetails.original_title.toUpperCase()}</p>
+								<small>{this.props.movieDetails.movieDetails.tagline.toUpperCase()}</small>
+								<br></br>
+								<br></br>
+								
+								<RatingWrapper>
+									<div>
+									<Rating 
+									initialRating={this.props.movieDetails.movieDetails.vote_average / 2}
+									readonly
+									emptySymbol="fa fa-star-o fa-1x"
+									fullSymbol="fa fa-star fa-1x"
+									/>
+									
+									<small>{this.props.movieDetails.movieDetails.vote_average}</small>
+									</div>
+								<small>
+									{
+										this.props.movieDetails.movieDetails.spoken_languages[0].name
+										+ '/' + 
+										this.props.movieDetails.movieDetails.runtime + ' MIN'
+										+ '/' + 
+										this.props.movieDetails.movieDetails.release_date.split('-')[0]
+									}
+								</small>
+								</RatingWrapper>
+
+								<Genre>
+									<p>THE GENRES</p>
+									<div>
+										{this.props.movieDetails.movieDetails.genres.map((element, index) => {
+											return (
+												<small>{element.name}</small>
+											);
+										})}
+									</div>
+								</Genre>
+
+								<Synopsis>
+									<p>THE SYNOPSIS</p>
+									{
+										this.props.movieDetails.movieDetails.overview
+									}
+								</Synopsis>
 							   </div>
 						}
 					</MovieInformation>

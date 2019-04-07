@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 
 const ContentWrapper = styled.div`
-	padding: 20px;
+    padding: 40px;
 `;
 
 class Main extends Component {
@@ -30,8 +30,8 @@ class Main extends Component {
                     URL was getting updated, but not component.
                 */}
                 <Sidebar />
-                <Switch>
-                    <ContentWrapper>
+                <ContentWrapper>
+                    <Switch>
                         <Route
                             path="/"
                             exact
@@ -46,19 +46,19 @@ class Main extends Component {
                             path="/discover/:name"
                             exact
                             component={(props) => <PopularMovies {...props} />}
-                    />
-                            <Route
+                        />
+                        <Route
                             path="/genres/:genre/"
                             exact
                             component={(props) => <GenreMovies {...props} />}
-                    />
-                            <Route
+                        />
+                        <Route
                             path="/movie/:movieId/"
                             exact
                             component={(props) => <MovieDetail {...props} />}
-                    />
-                    </ContentWrapper>
-                </Switch>
+                        />
+                    </Switch>
+                </ContentWrapper>
             </Container>
         );
     }
