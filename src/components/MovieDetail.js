@@ -5,24 +5,23 @@ import Rating from 'react-rating';
  
 const MovieDetailsWrapper = styled.div`
 	display: grid;
-	grid-template-columns: auto 600px;
-	grid-gap: 0px;
+	grid-template-columns: auto auto;
+	grid-gap: 20px;
 	
 `;
 
 const MovieImage = styled.div`
 	margin: auto;
-	padding-top: 50px;
+	padding-top: 30px;
 	& img {
 		border-radius: 10px;
+		margin-left: 20px;
+		box-shadow: 0px 4px 28px 0px rgba(0, 0, 0, 0.25);
     }
 `;
 
 const MovieInformation = styled.div`
-	text-align: left;	
-	margin: auto;
-	padding-top: 5px;
-	
+	padding-top: 30px;
 	& p {
 		color: #37474f;
 		font-weight: 400;
@@ -64,6 +63,30 @@ const Synopsis = styled.div`
 
 	& p {
 		font-size: 12px;
+	}
+`;
+
+const Buttons = styled.div`
+	display: flex;
+	justify-content: center;
+
+	& button {
+		margin: 20px;
+		text-decoration: none;
+		padding: 10px;
+		text-align: center;
+		background: #2E3351;
+		border: 0;
+		color: white;
+		cursor: pointer;
+		border-radius: 5px;
+		font-size: 14px;
+		font-weight: 400;
+
+		&:hover {
+			transition: all .2s ease-in-out;
+			transform: scale(1.05);
+		}
 	}
 `;
 
@@ -138,6 +161,12 @@ class MovieDetails extends Component {
 										this.props.movieDetails.movieDetails.overview
 									}
 								</Synopsis>
+
+								<Buttons>
+									<button>Website</button>
+									<button>IMDB</button>
+									<button>Watch Trailer</button>
+								</Buttons>
 							   </div>
 						}
 					</MovieInformation>

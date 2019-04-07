@@ -11,7 +11,7 @@ import MovieDetail from '../components/MovieDetail';
 
 const Container = styled.div`
     display: grid;
-    grid-template-columns: 200px auto;
+    grid-template-columns: 220px auto;
 `;
 
 const ContentWrapper = styled.div`

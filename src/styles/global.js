@@ -19,7 +19,7 @@ export default createGlobalStyle`
 
     body {
         font-family: 'Montserrat', sans-serif;
-        background-color: #fff;
+        background-color: rgb(240, 240, 240);
         letter-spacing: 0.1em;
       }
       form,
