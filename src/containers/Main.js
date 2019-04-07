@@ -10,11 +10,11 @@ import GenreMovies from '../components/GenreMovies';
 import MovieDetail from '../components/MovieDetail';
 
 const Container = styled.div`
-    display: flex;
+    display: grid;
+    grid-template-columns: 200px auto;
 `;
 
 const ContentWrapper = styled.div`
-    padding: 40px;
 `;
 
 class Main extends Component {

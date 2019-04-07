@@ -11,7 +11,7 @@ import ImageComponent from './ImageCard';
 
 const MainContainerWrapper = styled.div`
     padding-top: 10px;
-    padding-left: 20px;
+    
 `;
 
 class PopularMovies extends Component {

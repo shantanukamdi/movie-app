@@ -6,10 +6,13 @@ import Rating from 'react-rating';
 const MovieDetailsWrapper = styled.div`
 	display: grid;
 	grid-template-columns: auto 600px;
-	grid-gap: 20px;
+	grid-gap: 0px;
+	
 `;
 
 const MovieImage = styled.div`
+	margin: auto;
+	padding-top: 50px;
 	& img {
 		border-radius: 10px;
     }
@@ -17,6 +20,9 @@ const MovieImage = styled.div`
 
 const MovieInformation = styled.div`
 	text-align: left;	
+	margin: auto;
+	padding-top: 5px;
+	
 	& p {
 		color: #37474f;
 		font-weight: 400;
