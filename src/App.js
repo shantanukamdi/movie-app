@@ -8,6 +8,8 @@ import GlobalStyle from './styles/global';
 
 import './App.css';
 
+import '../node_modules/react-modal-video/scss/modal-video.scss';
+
 store.subscribe(() => {
   console.log(store.getState());
 });

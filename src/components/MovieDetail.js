@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Rating from 'react-rating';
- 
+import ModalVideo from 'react-modal-video';
+
 const MovieDetailsWrapper = styled.div`
 	display: grid;
 	grid-template-columns: auto auto;
@@ -22,6 +23,8 @@ const MovieImage = styled.div`
 
 const MovieInformation = styled.div`
 	padding-top: 30px;
+	margin-left: 10px;
+	
 	& p {
 		color: #37474f;
 		font-weight: 400;
@@ -70,7 +73,7 @@ const Buttons = styled.div`
 	display: flex;
 	justify-content: center;
 
-	& button {
+	& a {
 		margin: 20px;
 		text-decoration: none;
 		padding: 10px;
@@ -94,6 +97,14 @@ class MovieDetails extends Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			isOpen: false
+		}
+		this.openModal = this.openModal.bind(this);
+	}
+
+	openModal() {
+		this.setState({isOpen: true});
 	}
 
 	render() {
@@ -163,10 +174,36 @@ class MovieDetails extends Component {
 								</Synopsis>
 
 								<Buttons>
-									<button>Website</button>
-									<button>IMDB</button>
-									<button>Watch Trailer</button>
+									<a href={`${this.props.movieDetails.movieDetails.homepage}`} target="_blank">
+									<i class="fa fa-link" aria-hidden="true"></i>
+										Website
+										</a>
+									<a>
+										<i class="fa fa-imdb" aria-hidden="true"></i>&nbsp;
+										IMDB
+									</a>
+									{
+										this.props.movieDetails.movieDetails.videos && 
+										this.props.movieDetails.movieDetails.videos.results &&
+										this.props.movieDetails.movieDetails.videos.results.length > 0 &&
+										<a onClick={this.openModal}>
+											<i class="fa fa-play" aria-hidden="true"></i>&nbsp;
+											Watch Trailer
+										</a>	
+									}
 								</Buttons>
+
+								<ModalVideo 
+									channel='youtube' 
+									isOpen={this.state.isOpen} 
+									videoId= {
+										this.props.movieDetails.movieDetails.videos && 
+										this.props.movieDetails.movieDetails.videos.results &&
+										this.props.movieDetails.movieDetails.videos.results.length > 0 &&
+										this.props.movieDetails.movieDetails.videos.results[0].key
+										} 
+									onClose={() => this.setState({isOpen: false})} />
+
 							   </div>
 						}
 					</MovieInformation>
